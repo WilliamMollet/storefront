@@ -66,7 +66,7 @@ const UserManagement = () => {
 
     return (
         <div className="user-management-container">
-            <h2>User Management</h2>
+            <h2 className="management-title">User Management</h2>
             <ul className="user-list">
                 {users.map((user) => (
                     <li key={user._id} className="user-item">
@@ -83,9 +83,11 @@ const UserManagement = () => {
 
             {isConfirmModalOpen && (
                 <div className="confirm-modal">
-                    <h3>Are you sure you want to delete this user?</h3>
-                    <button className="confirm-button" onClick={handleDelete}>Yes, Delete</button>
-                    <button className="cancel-button" onClick={closeConfirmModal}>Cancel</button>
+                    <h3 className="confirm-title">Are you sure you want to delete this user?</h3>
+                    <div className="confirm-actions">
+                        <button className="confirm-button" onClick={handleDelete}>Yes, Delete</button>
+                        <button className="cancel-button" onClick={closeConfirmModal}>Cancel</button>
+                    </div>
                 </div>
             )}
 

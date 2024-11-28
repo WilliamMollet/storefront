@@ -22,20 +22,23 @@ const LoginForm = ({ onLogin }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="login-form">
+            <h2>Login</h2>
             <input
                 type="email"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                className="input-field"
             />
             <input
                 type="password"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                className="input-field"
             />
-            <button type="submit">Login</button>
+            <button type="submit" className="submit-button">Login</button>
         </form>
     );
 };

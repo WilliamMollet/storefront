@@ -29,6 +29,7 @@ const ProductManagement = () => {
         try {
             const { data } = await api.get('/products/search', { params: filters });
             setProducts(data);
+            console.log(data[0]);
         } catch (error) {
             console.error('Error fetching products:', error);
         }
@@ -63,8 +64,13 @@ const ProductManagement = () => {
     };
 
     const createProduct = async (e) => {
-        e.preventDefault();
-        // Logique pour créer un produit via l'API
+        try {
+            await api.post('/products', newProductData);
+            fetchProducts();
+            setIsCreateModalOpen(false);
+        } catch (error) {
+            console.error('Error creating product:', error);
+        }
     };
 
     const openEditModal = (id) => {
@@ -109,9 +115,9 @@ const ProductManagement = () => {
                 <form onSubmit={handleSearch} className="filter-form">
                     <input
                         type="text"
-                        name="category"
-                        placeholder="Category"
-                        value={filters.category}
+                        name="name"
+                        placeholder="Name"
+                        value={filters.name}
                         onChange={handleFilterChange}
                         className="filter-input"
                     />
@@ -133,9 +139,9 @@ const ProductManagement = () => {
                     />
                     <input
                         type="text"
-                        name="name"
-                        placeholder="Name"
-                        value={filters.name}
+                        name="category"
+                        placeholder="Category"
+                        value={filters.category}
                         onChange={handleFilterChange}
                         className="filter-input"
                     />
@@ -157,7 +163,7 @@ const ProductManagement = () => {
                 <ul className="product-list">
                     {products.map((product) => (
                         <li key={product._id} className="product-item">
-                            <strong>{product.name}</strong> - ${product.price} ({product.category}){' '}
+                            <strong>{product.name}</strong> - ${product.price} ({product.category}) -- Propriétaire : {product.owner.username}{' '}
                             <button onClick={() => openEditModal(product._id)} className="edit-button">Edit</button>
                             <button onClick={() => openConfirmModal(product._id)} className="delete-button">Delete</button>
                         </li>

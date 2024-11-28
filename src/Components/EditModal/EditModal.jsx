@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './EditModal.css';
 
 const EditModal = ({ isOpen, onClose, itemId, fetchItem, updateItem, typeItem }) => {
     const [formData, setFormData] = useState(null);
@@ -31,21 +32,23 @@ const EditModal = ({ isOpen, onClose, itemId, fetchItem, updateItem, typeItem })
             <div className="modal-backdrop" onClick={onClose}></div>
             <div className="modal-content">
                 <h3 className="modal-header">Edit {typeItem === "user" ? formData["username"] : formData["name"]}</h3>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="modal-form">
                     {Object.keys(formData).map((key) => (
-                        <div key={key}>
-                            <label>{key}</label>
+                        <div key={key} className="form-group">
+                            <label htmlFor={key} className="form-label">{key}</label>
                             <input
                                 type="text"
+                                id={key}
                                 name={key}
-                                value={key !== "password" ? formData[key] : ""}
+                                className="form-input"
+                                defaultValue={key !== "password" && key !== "owner" ? formData[key] : ""}
                                 onChange={handleChange}
                             />
                         </div>
                     ))}
                     <div className="modal-actions">
-                        <button type="submit">Save</button>
-                        <button type="button" onClick={onClose}>Cancel</button>
+                        <button type="submit" className="save-button">Save</button>
+                        <button type="button" className="cancel-button" onClick={onClose}>Cancel</button>
                     </div>
                 </form>
             </div>

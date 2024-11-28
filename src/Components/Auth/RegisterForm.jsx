@@ -28,9 +28,9 @@ const RegisterForm = () => {
     };
 
     return (
-        <div>
-            <h2>Register</h2>
-            <form onSubmit={handleSubmit}>
+        <div className="register-container">
+            <form onSubmit={handleSubmit} className="register-form">
+                <h2>Register</h2>
                 <input
                     type="text"
                     name="username"
@@ -38,6 +38,7 @@ const RegisterForm = () => {
                     value={formData.username}
                     onChange={handleChange}
                     required
+                    className="input-field"
                 />
                 <input
                     type="email"
@@ -46,6 +47,7 @@ const RegisterForm = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
+                    className="input-field"
                 />
                 <input
                     type="password"
@@ -54,14 +56,20 @@ const RegisterForm = () => {
                     value={formData.password}
                     onChange={handleChange}
                     required
+                    className="input-field"
                 />
-                <select name="role" value={formData.role} onChange={handleChange}>
+                <select
+                    name="role"
+                    value={formData.role}
+                    onChange={handleChange}
+                    className="select-field"
+                >
                     <option value="user">User</option>
                     <option value="admin">Admin</option>
                 </select>
-                <button type="submit">Register</button>
+                <button type="submit" className="submit-button">Register</button>
             </form>
-            {message && <p>{message}</p>}
+            {message && <p className="response-message">{message}</p>}
         </div>
     );
 };

@@ -1,12 +1,14 @@
 import React from 'react';
+import './Navbar.css';
 
 const Navbar = ({ user, onLogout }) => {
     return (
         <nav className="navbar">
-            <div>
-                <strong>{localStorage.getItem('username')}</strong> | <span>{localStorage.getItem('role')}</span>
+            <div className="navbar-user-info">
+                <strong className="navbar-username">{localStorage.getItem('username')}</strong> | 
+                <span className="navbar-role">{localStorage.getItem('role')}</span>
             </div>
-            <button onClick={onLogout}>Logout</button>
+            <button onClick={onLogout} className="navbar-logout-button">Logout</button>
         </nav>
     );
 };
