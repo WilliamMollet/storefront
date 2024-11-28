@@ -1,0 +1,13 @@
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dashboard-container h1 {
+    margin-bottom: 2rem;
+}
+
+.dashboard-container > * {
+    margin-bottom: 2rem;
+}
